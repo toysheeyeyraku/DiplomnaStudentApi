@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DiplomnaStudentApi
@@ -16,8 +17,16 @@ namespace DiplomnaStudentApi
                         .SetIsOriginAllowed((host) => true)
                         .AllowAnyHeader());
             });
+            services.Configure<FormOptions>(o =>  // currently all set to max, configure it to your needs!
+            {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = long.MaxValue; // <-- !!! long.MaxValue
+                o.MultipartBoundaryLengthLimit = int.MaxValue;
+                o.MultipartHeadersCountLimit = int.MaxValue;
+                o.MultipartHeadersLengthLimit = int.MaxValue;
+            });
             services.AddControllers();
-
+           
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -36,7 +45,11 @@ namespace DiplomnaStudentApi
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.Use(async (context, next) =>
+            {
+                context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = null; // unlimited I guess
+                await next.Invoke();
+            });
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }

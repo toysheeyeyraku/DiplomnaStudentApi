@@ -13,5 +13,6 @@ namespace DiplomnaStudentApi.Model
         public string ThridName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public byte[] Image { get; set; }
     }
 }
