@@ -10,7 +10,7 @@ namespace DiplomnaStudentApi.Repository
 {
     public class StudentProfileRepository : CommonRepository<StudentProfile>, IStudentProfileRepository
     {
-        public StudentProfileRepository(): base(new MongoRepo.Context.ApplicationDbContext(DatabaseConfig.DbConnectionString, DatabaseConfig.DbName))
+        public StudentProfileRepository() : base(new MongoRepo.Context.ApplicationDbContext(DatabaseConfig.DbConnectionString, DatabaseConfig.DbName))
         {
 
         }
