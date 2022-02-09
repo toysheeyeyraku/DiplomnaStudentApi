@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DiplomnaStudentApi.DTO
 {
-    public class DeptDto
+    public class DebtDto
     {
         public long MoneyDept { get; set; }
     }
