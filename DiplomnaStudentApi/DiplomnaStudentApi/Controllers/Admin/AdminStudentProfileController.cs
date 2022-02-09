@@ -19,33 +19,30 @@ namespace DiplomnaStudentApi.Student.Controller
 
     [ApiController]
     [Route("[controller]")]
-    public class StudentProfileController : ApiController
+    public class AdminStudentProfileController : ApiController
     {
         private IStudentProfileService studentProfileService;
 
-        public StudentProfileController(IStudentProfileService studentProfileService)
+        public AdminStudentProfileController(IStudentProfileService studentProfileService)
         {
             this.studentProfileService = studentProfileService;
         }
 
-
-        [Authorize(Roles = "student")]
-        [Route("/student/profile")]
+        [Authorize(Roles = "admin")]
+        [Route("/admin/student/profile")]
         [HttpGet]
-        public StudentProfileDto StudentProfile()
+        public StudentProfileDto StudentProfile([FromQuery(Name = "userId")] string userId)
         {
-            string userId = base.GetUserId();
             StudentProfileDto studentProfileDto = studentProfileService.GetStudentProfile(userId);
             return studentProfileDto;
         }
 
-        [Authorize(Roles = "student")]
-        [Route("/student/profileImage/update")]
+        [Authorize(Roles = "admin")]
+        [Route("/admin/student/profileImage/update")]
         [HttpPost]
         [RequestSizeLimit(40000000)]
-        public string UpdateProfileImage()
+        public string UpdateProfileImage([FromQuery(Name = "userId")] string userId)
         {
-            string userId = base.GetUserId();
             byte[] blobImage = base.GetImageFromRequestBytes();
             studentProfileService.UpdateStudentProfileImage(blobImage, userId);
             return "ok";
@@ -53,12 +50,11 @@ namespace DiplomnaStudentApi.Student.Controller
         }
 
 
-        [Authorize(Roles = "student")]
-        [Route("/student/profile/update")]
+        [Authorize(Roles = "admin")]
+        [Route("/admin/student/profile/update")]
         [HttpPost]
-        public string UpdateProfile([FromBody] StudentProfileDto studentUpdateRequest)
+        public string UpdateProfile([FromBody] StudentProfileDto studentUpdateRequest, [FromQuery(Name = "userId")] string userId)
         {
-            string userId = base.GetUserId();
             studentProfileService.UpdateStudentProfile(studentUpdateRequest, userId);
             return "ok";
         }

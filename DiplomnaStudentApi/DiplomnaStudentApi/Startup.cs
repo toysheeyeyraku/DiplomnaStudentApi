@@ -1,3 +1,6 @@
+using DiplomnaStudentApi.Repository;
+using DiplomnaStudentApi.Services;
+using DiplomnaStudentApi.ServicesImpl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +36,11 @@ namespace DiplomnaStudentApi
                     options.Audience = "api1";
                     options.Authority = "https://localhost:5000";
                 });
+        
+            services.AddScoped<IStudentProfileManager, StudentProfileManager>();
+            services.AddScoped<IStudentProfileService, StudentProfileService>();
+            services.AddScoped<INotificationManager, NotificationManager>();
+            services.AddScoped<INotificationService, NotificationService>();
         }
 
         public void Configure(IApplicationBuilder app)

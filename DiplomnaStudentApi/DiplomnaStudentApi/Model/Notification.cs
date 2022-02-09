@@ -11,6 +11,6 @@ namespace DiplomnaStudentApi.Model
         public string Header { get; set; }
         public string Body { get; set; }
         public string Date { get; set; }
-        public string Authror { get; set; }
+        public string Author { get; set; }
     }
 }
