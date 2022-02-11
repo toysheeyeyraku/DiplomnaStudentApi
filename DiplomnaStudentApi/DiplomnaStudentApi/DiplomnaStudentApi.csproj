@@ -5,16 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\Admin\AdminDeptController.cs~RF81ecb8b0.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebHelpers" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
     <PackageReference Include="MongoRepo" Version="1.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repository\PaymentCheck\" />
-    <Folder Include="Repository\Debt\" />
   </ItemGroup>
 
 </Project>
