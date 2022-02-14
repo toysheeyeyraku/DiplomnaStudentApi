@@ -14,5 +14,6 @@ namespace DiplomnaStudentApi.Model
         public string Phone { get; set; }
         public string Email { get; set; }
         public byte[] Image { get; set; }
+        public string Room { get; set; }
     }
 }

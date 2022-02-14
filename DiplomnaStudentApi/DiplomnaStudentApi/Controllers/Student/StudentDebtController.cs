@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace DiplomnaStudentApi.Student.Controller
 {
 
-    [ApiController]
     [Route("[controller]")]
     public class StudentDeptController : ApiController
     {
@@ -19,7 +18,7 @@ namespace DiplomnaStudentApi.Student.Controller
         }
 
         [Authorize(Roles = "student")]
-        [Route("student/debt")]
+        [Route("/student/debt")]
         [HttpGet]
         public DebtDto GetDebt()
         {

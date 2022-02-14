@@ -19,7 +19,7 @@ namespace DiplomnaStudentApi.Admin.Controller
         }
 
         [Authorize(Roles = "admin")]
-        [Route("admin/debt")]
+        [Route("/admin/debt")]
         [HttpPost]
         public string UpdateDebt([FromBody] DebtDto debtDto, [FromQuery(Name = "userId")] string userId)
         {
@@ -30,7 +30,7 @@ namespace DiplomnaStudentApi.Admin.Controller
         }
 
         [Authorize(Roles = "admin")]
-        [Route("admin/debt")]
+        [Route("/admin/debt")]
         [HttpGet]
         public DebtDto GetDebt([FromQuery(Name = "userId")] string userId)
         {

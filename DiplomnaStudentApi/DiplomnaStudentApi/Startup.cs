@@ -45,6 +45,8 @@ namespace DiplomnaStudentApi
             services.AddScoped<IDebtService, DebtService>();
             services.AddScoped<IPaymentManager, PaymentManager>();
             services.AddScoped<IPaymentService, PaymentServise>();
+            services.AddScoped<IRoomManager, RoomManager>();
+            services.AddScoped<IRoomService, RoomService>();
         }
 
         public void Configure(IApplicationBuilder app)
