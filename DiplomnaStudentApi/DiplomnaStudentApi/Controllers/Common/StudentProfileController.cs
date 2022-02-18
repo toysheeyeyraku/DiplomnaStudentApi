@@ -19,18 +19,18 @@ namespace DiplomnaStudentApi.Student.Controller
 
     [ApiController]
     [Route("[controller]")]
-    public class StudentProfileController : ApiController
+    public class SelfProfileController : ApiController
     {
         private IStudentProfileService studentProfileService;
 
-        public StudentProfileController(IStudentProfileService studentProfileService)
+        public SelfProfileController(IStudentProfileService studentProfileService)
         {
             this.studentProfileService = studentProfileService;
         }
 
 
-        [Authorize(Roles = "student")]
-        [Route("/student/profile")]
+        [Authorize(Roles = "student,admin,comendant,dean,passportHolder")]
+        [Route("/common/profile")]
         [HttpGet]
         public StudentProfileDto StudentProfile()
         {
@@ -39,8 +39,8 @@ namespace DiplomnaStudentApi.Student.Controller
             return studentProfileDto;
         }
 
-        [Authorize(Roles = "student")]
-        [Route("/student/profileImage/update")]
+        [Authorize(Roles = "student,admin,comendant,dean,passportHolder")]
+        [Route("/common/profileImage/update")]
         [HttpPost]
         [RequestSizeLimit(40000000)]
         public string UpdateProfileImage()
@@ -52,9 +52,21 @@ namespace DiplomnaStudentApi.Student.Controller
 
         }
 
+        [Authorize(Roles = "student,admin,comendant,dean,passportHolder")]
+        [Route("/common/signImage/update")]
+        [HttpPost]
+        [RequestSizeLimit(40000000)]
+        public string UpdateSignImage()
+        {
+            string userId = base.GetUserId();
+            byte[] blobImage = base.GetImageFromRequestBytes();
+            studentProfileService.UpdateSignImage(blobImage, userId);
+            return "ok";
 
-        [Authorize(Roles = "student")]
-        [Route("/student/profile/update")]
+        }
+
+        [Authorize(Roles = "student,admin,comendant,dean,passportHolder")]
+        [Route("/common/profile/update")]
         [HttpPost]
         public string UpdateProfile([FromBody] StudentProfileDto studentUpdateRequest)
         {

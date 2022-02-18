@@ -12,6 +12,14 @@ namespace DiplomnaStudentApi.DTO
         public string ThirdName { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public byte [] ProfileImage { get; set; }
+        public string Room { get; set; }
+        public string Group { get; set; }
+        public string Faculty { get; set; }
+        public string PassportNumber { get; set; }
+        public string PassportGivenDate { get; set; }
+        public string DateBirth { get; set; }
+        public string Course { get; set; }
+        public byte[] ProfileImage { get; set; }
+        public byte[] SignImage { get; set; }
     }
 }

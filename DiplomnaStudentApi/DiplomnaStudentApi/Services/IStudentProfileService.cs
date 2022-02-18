@@ -11,5 +11,6 @@ namespace DiplomnaStudentApi.Services
         void UpdateStudentProfile(StudentProfileDto studentUpdateRequest, string userId);
         void UpdateStudentProfileImage(byte[] blobImage, string userId);
         StudentProfileDto GetStudentProfile(string userId);
+        public void UpdateSignImage(byte[] blobImage, string userId);
     }
 }
