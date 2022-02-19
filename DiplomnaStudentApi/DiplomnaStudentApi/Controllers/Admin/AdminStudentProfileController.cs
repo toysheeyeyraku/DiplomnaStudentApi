@@ -28,7 +28,7 @@ namespace DiplomnaStudentApi.Student.Controller
             this.studentProfileService = studentProfileService;
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,comendant,dean,passportHolder")]
         [Route("/admin/student/profile")]
         [HttpGet]
         public StudentProfileDto StudentProfile([FromQuery(Name = "userId")] string userId)
@@ -37,7 +37,7 @@ namespace DiplomnaStudentApi.Student.Controller
             return studentProfileDto;
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,comendant,dean")]
         [Route("/admin/student/profileImage/update")]
         [HttpPost]
         [RequestSizeLimit(40000000)]
@@ -50,7 +50,7 @@ namespace DiplomnaStudentApi.Student.Controller
         }
 
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,comendant,dean")]
         [Route("/admin/student/profile/update")]
         [HttpPost]
         public string UpdateProfile([FromBody] StudentProfileDto studentUpdateRequest, [FromQuery(Name = "userId")] string userId)
