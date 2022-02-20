@@ -27,5 +27,19 @@ namespace DiplomnaStudentApi.Utils
 
             return b;
         }
+    
+        public static int GetCurrentStudyYear()
+        {
+            int month = DateTime.Now.Month;
+            if (month < 7)
+            {
+                return DateTime.Now.Year - 1;
+            }
+            else
+            {
+                return DateTime.Now.Year;
+            }
+        }
+    
     }
 }
